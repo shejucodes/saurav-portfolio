@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import profile from "../assets/profile.jpg";
 
 function Sidebar() {
   const [active, setActive] = useState("home");
@@ -25,69 +24,88 @@ function Sidebar() {
     };
   }, []);
 
-  const linkClass = (id) =>
+  const linkStyle = (id) =>
     active === id
-      ? "text-white font-medium transition"
-      : "text-slate-500 hover:text-white transition";
+      ? "text-white font-semibold"
+      : "text-slate-400 hover:text-white transition";
 
   return (
-    <div className="h-full flex flex-col justify-between p-10">
+    <aside className="w-80 h-screen fixed left-0 top-0 bg-gradient-to-b from-slate-900 to-slate-950 border-r border-white/5 flex flex-col justify-between px-10 py-12">
 
-      {/* TOP */}
-      <div>
+      {/* TOP SECTION */}
+      <div className="space-y-10">
 
-        {/* Photo with glow */}
-        <div className="relative w-24 h-24 mb-6">
-          <div className="absolute inset-0 rounded-full bg-blue-500/20 blur-xl" />
-          <img
-            src={profile}
-            alt="Saurav Shejwal"
-            className="relative w-24 h-24 rounded-full object-cover border border-white/10 hover:scale-105 transition duration-300"
-          />
+        {/* Logo */}
+        <div className="w-24 h-24 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-3xl font-bold text-white shadow-xl">
+          SP
         </div>
 
-        <h2 className="text-lg font-semibold tracking-tight">
-          Saurav Shejwal
-        </h2>
+        {/* Identity */}
+        <div className="space-y-3">
+          <h2 className="text-2xl font-semibold leading-snug">
+            Saurav Prakash Shejwal
+          </h2>
 
-        <p className="text-sm text-slate-400 mt-1">
-          Data Analyst
-        </p>
+          <p className="text-base text-slate-400">
+            Data Analyst & BI Specialist
+          </p>
 
-        <p className="text-xs text-slate-500 mt-2">
-          Mumbai, India
-        </p>
+          <p className="text-sm text-slate-500">
+            Mumbai, India
+          </p>
+        </div>
 
-        <nav className="mt-10 flex flex-col gap-4 text-sm">
+        {/* Navigation */}
+        <nav className="pt-10 flex flex-col gap-6 text-lg">
 
-          <a href="#home" className={linkClass("home")}>
+          <a href="#home" className={linkStyle("home")}>
             Home
           </a>
 
-          <a href="#about" className={linkClass("about")}>
+          <a href="#about" className={linkStyle("about")}>
             About
           </a>
 
-          <a href="#skills" className={linkClass("skills")}>
+          <a href="#experience" className={linkStyle("experience")}>
+            Experience
+          </a>
+
+          <a href="#skills" className={linkStyle("skills")}>
             Skills
           </a>
 
-          <a href="#projects" className={linkClass("projects")}>
+          <a href="#projects" className={linkStyle("projects")}>
             Projects
+          </a>
+
+          <a href="#certifications" className={linkStyle("certifications")}>
+            Certifications
+          </a>
+
+          <a href="#contact" className={linkStyle("contact")}>
+            Contact
           </a>
 
         </nav>
       </div>
 
-      {/* BOTTOM */}
-      <div className="space-y-4">
+      {/* BOTTOM SECTION */}
+      <div className="space-y-6">
 
-        <div className="flex flex-col gap-2 text-sm text-slate-500">
+        <a
+          href="/resume.pdf"
+          download
+          className="block w-full text-center bg-white text-black py-3 rounded-full text-base font-semibold hover:opacity-90 transition"
+        >
+          Download Resume
+        </a>
+
+        <div className="space-y-3 text-base text-slate-400">
           <a
             href="https://github.com/shejucodes"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-white transition"
+            className="block hover:text-white transition"
           >
             GitHub
           </a>
@@ -96,19 +114,15 @@ function Sidebar() {
             href="https://www.linkedin.com/in/sauravshejwal/"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-white transition"
+            className="block hover:text-white transition"
           >
             LinkedIn
           </a>
         </div>
 
-        <button className="w-full bg-white text-black hover:opacity-90 transition py-2 rounded-full text-sm font-medium">
-          Contact
-        </button>
-
       </div>
 
-    </div>
+    </aside>
   );
 }
 

@@ -1,227 +1,282 @@
-import { useEffect, useState, useRef } from "react";
-import { motion } from "framer-motion";
-import emailjs from "@emailjs/browser";
 import profile from "../assets/profile.jpg";
 
 function Home() {
-  const fullText = "Data that drives decisions.";
-  const [displayText, setDisplayText] = useState("");
-  const form = useRef();
-
-  useEffect(() => {
-    let index = 0;
-    const interval = setInterval(() => {
-      setDisplayText(fullText.slice(0, index + 1));
-      index++;
-      if (index === fullText.length) clearInterval(interval);
-    }, 40);
-    return () => clearInterval(interval);
-  }, []);
-
-  const sendEmail = (e) => {
-    e.preventDefault();
-
-    emailjs
-      .sendForm(
-        import.meta.env.VITE_EMAIL_SERVICE,
-        import.meta.env.VITE_EMAIL_TEMPLATE,
-        form.current,
-        import.meta.env.VITE_EMAIL_PUBLIC
-      )
-      .then(() => alert("Message sent successfully!"))
-      .catch((error) => console.log(error));
-
-    e.target.reset();
-  };
-
-  const skills = [
-    { name: "SQL", level: 90 },
-    { name: "Python", level: 85 },
-    { name: "Power BI", level: 88 },
-    { name: "Machine Learning", level: 75 },
-  ];
-
   return (
-    <div className="space-y-48 pb-32">
+    <div className="space-y-40 pb-32">
 
       {/* HERO */}
-      <motion.section
-        id="home"
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
-        className="pt-32 grid md:grid-cols-2 items-center gap-16"
-      >
-        <div className="space-y-8">
-          <h1 className="text-5xl font-semibold leading-tight">
-            {displayText}
-            <span className="animate-pulse">|</span>
+      <section id="home" className="min-h-[90vh] flex flex-col lg:flex-row items-center justify-between gap-20">
+
+        <div className="flex-1 space-y-10">
+
+          <h1 className="text-6xl lg:text-7xl font-bold leading-tight">
+            Hi, I'm{" "}
+            <span className="text-blue-500">
+              Saurav Prakash Shejwal
+            </span>{" "}
+            <span className="animate-wave inline-block">👋</span>
           </h1>
 
-          <p className="text-lg text-slate-400 max-w-xl">
-            I'm Saurav Shejwal — Data Analyst specializing in SQL,
-            Python, and Power BI.
+          <p className="text-2xl text-slate-400 max-w-2xl leading-relaxed">
+            Data Analyst & BI Specialist transforming raw data into measurable business impact 
+            using Power BI, SQL, Python, and advanced forecasting models.
+          </p>
+
+          <div className="flex flex-wrap gap-6 pt-6">
+            <a
+              href="#projects"
+              className="px-8 py-4 bg-white text-black rounded-full text-lg font-semibold"
+            >
+              View Top Projects
+            </a>
+
+            <a
+              href="https://github.com/shejucodes"
+              target="_blank"
+              className="px-8 py-4 border border-white/20 rounded-full text-lg"
+            >
+              Connect on GitHub
+            </a>
+
+            <a
+              href="https://www.linkedin.com/in/sauravshejwal/"
+              target="_blank"
+              className="px-8 py-4 border border-white/20 rounded-full text-lg"
+            >
+              Explore LinkedIn
+            </a>
+          </div>
+
+        </div>
+
+        <div className="flex-1 flex justify-center">
+          <img
+            src={profile}
+            alt="Saurav"
+            className="w-[420px] h-[520px] object-cover rounded-3xl shadow-2xl border border-white/10"
+          />
+        </div>
+
+      </section>
+
+      {/* ABOUT */}
+      <section id="about" className="space-y-8 max-w-5xl">
+        <h2 className="text-5xl font-semibold">About Me</h2>
+        <p className="text-xl text-slate-400 leading-relaxed">
+          I specialize in business-focused analytics and automation. My expertise spans
+          Power BI dashboards, SQL-driven insights, forecasting models like SVR and ARIMA,
+          KPI tracking, ETL workflows, and decision-support reporting systems.
+        </p>
+      </section>
+
+      {/* INDUSTRY EXPERIENCE */}
+      <section id="experience" className="space-y-10">
+        <h2 className="text-5xl font-semibold">Industry Experience</h2>
+
+        <div className="border border-white/10 rounded-2xl p-8 space-y-4">
+          <h3 className="text-2xl font-semibold">
+            Project Coordinator – Capstone Solar PV Forecasting Model
+          </h3>
+          <p className="text-slate-400 text-lg">
+            Built an SVR-based Solar PV Energy Forecasting Model using weather and IoT data,
+            improving prediction accuracy by 18%. Automated Power BI dashboards reducing 
+            monthly reporting effort by 40%. Led a cross-functional team delivering 
+            stakeholder-ready analytical insights.
           </p>
         </div>
 
-        <div className="relative flex justify-center">
-          <div className="absolute w-80 h-80 bg-blue-500/10 rounded-full blur-3xl animate-pulse" />
-          <img
-            src={profile}
-            alt="Saurav Shejwal"
-            className="relative w-72 h-72 md:w-96 md:h-96 object-cover rounded-3xl border border-white/10 shadow-2xl float"
-          />
+        <div className="border border-white/10 rounded-2xl p-8">
+          <h3 className="text-2xl font-semibold">IEEE SIES GST – Publicity Head</h3>
+          <p className="text-slate-400 text-lg">
+            Managed digital campaigns increasing event engagement by 20–25%.
+            Led multimedia strategy and cross-functional coordination.
+          </p>
         </div>
-      </motion.section>
 
+        <div className="border border-white/10 rounded-2xl p-8">
+          <h3 className="text-2xl font-semibold">Rotaract Ruia – Secretary & Director of Services</h3>
+          <p className="text-slate-400 text-lg">
+            Led community service projects, documentation systems, and club coordination,
+            improving operational efficiency and engagement.
+          </p>
+        </div>
 
-      {/* ABOUT */}
-      <motion.section
-        id="about"
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
-        className="space-y-8"
-      >
-        <h2 className="text-3xl font-semibold">About</h2>
-
-        <p className="text-slate-400 max-w-3xl leading-relaxed">
-          I help businesses turn raw data into actionable insights.
-          My focus is KPI tracking, dashboard automation, and
-          decision-support analytics using SQL, Python and Power BI.
-        </p>
-      </motion.section>
-
+      </section>
 
       {/* SKILLS */}
-      <motion.section
-        id="skills"
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
-        className="space-y-12"
-      >
-        <h2 className="text-3xl font-semibold">Technical Skills</h2>
+      <section id="skills" className="space-y-12">
+        <h2 className="text-5xl font-semibold">Core Skills</h2>
 
-        <div className="space-y-8 max-w-2xl">
-          {skills.map((skill, index) => (
-            <div key={index}>
-              <div className="flex justify-between mb-2">
-                <span>{skill.name}</span>
-                <span className="text-slate-500">{skill.level}%</span>
-              </div>
+        <div className="grid md:grid-cols-3 gap-16 text-xl text-slate-400">
+          <div>
+            <h3 className="font-semibold text-white mb-4">Data & Programming</h3>
+            <ul className="space-y-3">
+              <li>Python (Pandas, Scikit-Learn)</li>
+              <li>SQL</li>
+              <li>Data Cleaning & ETL</li>
+              <li>Preprocessing</li>
+            </ul>
+          </div>
 
-              <div className="w-full h-2 bg-white/10 rounded-full overflow-hidden">
-                <motion.div
-                  initial={{ width: 0 }}
-                  whileInView={{ width: `${skill.level}%` }}
-                  transition={{ duration: 1 }}
-                  viewport={{ once: true }}
-                  className="h-full bg-white rounded-full"
-                />
-              </div>
-            </div>
-          ))}
+          <div>
+            <h3 className="font-semibold text-white mb-4">Business Intelligence</h3>
+            <ul className="space-y-3">
+              <li>Power BI</li>
+              <li>DAX</li>
+              <li>Power Query</li>
+              <li>KPI Reporting</li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="font-semibold text-white mb-4">Analytics</h3>
+            <ul className="space-y-3">
+              <li>Forecasting Models (SVR, ARIMA)</li>
+              <li>RFM Segmentation</li>
+              <li>Sales & Cost Analysis</li>
+              <li>Trend Detection</li>
+            </ul>
+          </div>
         </div>
-      </motion.section>
 
+      </section>
 
       {/* PROJECTS */}
-      <motion.section
-        id="projects"
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
-        className="space-y-10"
+      <section id="projects" className="space-y-12">
+        <h2 className="text-5xl font-semibold">Top 5 Projects</h2>
+
+        <div className="grid md:grid-cols-2 gap-12">
+
+          {[
+            "Solar PV Energy Forecasting Model",
+            "Superstore Sales Analysis",
+            "Power BI Cost Analytics Dashboard",
+            "E-Commerce RFM Segmentation",
+            "Business KPI Automation Dashboard"
+          ].map((project, i) => (
+            <div
+              key={i}
+              className="border border-white/10 rounded-2xl p-8 hover:bg-white/5 transition"
+            >
+              <h3 className="text-2xl font-semibold mb-4">
+                {project}
+              </h3>
+              <a
+                href="https://github.com/shejucodes"
+                target="_blank"
+                className="text-blue-400"
+              >
+                View on GitHub →
+              </a>
+            </div>
+          ))}
+
+        </div>
+
+        <div className="pt-8">
+          <a
+            href="https://github.com/shejucodes"
+            target="_blank"
+            className="px-8 py-4 border border-white/20 rounded-full text-lg"
+          >
+            Explore More on GitHub →
+          </a>
+        </div>
+
+      </section>
+{/* ================= CERTIFICATIONS ================= */}
+      <section
+        id="certifications"
+        className="min-h-screen flex items-center px-6 md:px-20 py-32"
       >
-        <h2 className="text-3xl font-semibold">Projects</h2>
+        <div className="max-w-6xl w-full space-y-16">
 
-        <div className="grid md:grid-cols-2 gap-8">
+          <h2 className="text-5xl md:text-6xl font-bold tracking-tight">
+            Certifications
+          </h2>
 
-          <div className="p-8 bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl">
-            <h3 className="font-medium mb-3">Superstore Sales Analysis</h3>
-            <p className="text-slate-400 text-sm mb-4">
-              Revenue and profitability insights using Python & Power BI.
-            </p>
-            <a
-              href="https://github.com/shejucodes/superstore-sales-analysis"
-              target="_blank"
-              className="text-blue-400 hover:text-blue-300"
-            >
-              View Project →
-            </a>
-          </div>
+          <div className="space-y-8 text-lg text-slate-400">
 
-          <div className="p-8 bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl">
-            <h3 className="font-medium mb-3">Customer Churn Analysis</h3>
-            <p className="text-slate-400 text-sm mb-4">
-              Predictive churn modeling and segmentation analysis.
-            </p>
-            <a
-              href="https://github.com/shejucodes/customer-churn-analysis"
-              target="_blank"
-              className="text-blue-400 hover:text-blue-300"
-            >
-              View Project →
-            </a>
+            <div>
+              <span className="font-semibold text-white">1.</span>{" "}
+              AI Assisted Developer –{" "}
+              <span className="font-bold text-white">
+                Code360 (Coding Ninjas)
+              </span>
+            </div>
+
+            <div>
+              <span className="font-semibold text-white">2.</span>{" "}
+              Databases for Developers –{" "}
+              <span className="font-bold text-white">
+                Oracle Corporation
+              </span>
+            </div>
+
+            <div>
+              <span className="font-semibold text-white">3.</span>{" "}
+              Data Analytics Certification –{" "}
+              <span className="font-bold text-white">
+                Deloitte
+              </span>
+            </div>
+
+            <div>
+              <span className="font-semibold text-white">4.</span>{" "}
+              Quantitative Research Program –{" "}
+              <span className="font-bold text-white">
+                JPMorgan Chase & Co.
+              </span>
+            </div>
+
+            <div>
+              <span className="font-semibold text-white">5.</span>{" "}
+              Data Visualisation & GenAI Analytics –{" "}
+              <span className="font-bold text-white">
+                Tata Group
+              </span>
+            </div>
+
           </div>
 
         </div>
-      </motion.section>
-
+      </section>
+    
+      
 
       {/* CONTACT */}
-      <motion.section
-        id="contact"
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
-        className="space-y-8 max-w-xl"
-      >
-        <h2 className="text-3xl font-semibold">Contact</h2>
+      <section id="contact" className="space-y-8 pt-20">
+        <h2 className="text-5xl font-semibold">Let's Connect</h2>
 
-        <form
-          ref={form}
-          onSubmit={sendEmail}
-          className="space-y-6 bg-white/5 backdrop-blur-md border border-white/10 p-8 rounded-3xl"
-        >
-          <input
-            type="text"
-            name="user_name"
-            placeholder="Your Name"
-            required
-            className="w-full bg-transparent border border-white/10 rounded-xl p-4"
-          />
-
-          <input
-            type="email"
-            name="user_email"
-            placeholder="Your Email"
-            required
-            className="w-full bg-transparent border border-white/10 rounded-xl p-4"
-          />
-
-          <textarea
-            name="message"
-            rows="4"
-            placeholder="Your Message"
-            required
-            className="w-full bg-transparent border border-white/10 rounded-xl p-4"
-          />
-
-          <button
-            type="submit"
-            className="w-full py-3 rounded-full bg-white text-black font-medium hover:scale-105 transition"
+        <div className="flex flex-wrap gap-6 pt-6">
+          <a
+            href="mailto:sauravshejwal@gmail.com"
+            className="px-8 py-4 bg-white text-black rounded-full text-lg font-semibold"
           >
-            Send Message
-          </button>
-        </form>
-      </motion.section>
+            Email Me
+          </a>
+
+          <a
+            href="https://github.com/shejucodes"
+            target="_blank"
+            className="px-8 py-4 border border-white/20 rounded-full text-lg"
+          >
+            GitHub
+          </a>
+
+          <a
+            href="https://www.linkedin.com/in/sauravshejwal/"
+            target="_blank"
+            className="px-8 py-4 border border-white/20 rounded-full text-lg"
+          >
+            LinkedIn
+          </a>
+        </div>
+
+        <p className="pt-16 text-slate-500 text-lg">
+          © 2026 Saurav Prakash Shejwal®
+        </p>
+      </section>
 
     </div>
   );

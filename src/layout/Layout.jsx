@@ -1,34 +1,18 @@
 import Sidebar from "../components/Sidebar";
 import Home from "../pages/Home";
-import { useState, useEffect } from "react";
-import Loader from "../components/Loader";
 
 function Layout() {
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    setTimeout(() => setLoading(false), 1000);
-  }, []);
-
-  if (loading) return <Loader />;
-
   return (
-    <div className="relative flex h-screen text-slate-200 overflow-hidden">
+    <div className="flex min-h-screen bg-[#0a0f1a] text-slate-200">
 
-      {/* Animated Background */}
-      <div className="absolute inset-0 -z-10 bg-gradient-to-br from-black via-slate-900 to-black">
-        <div className="absolute w-96 h-96 bg-blue-500/20 rounded-full blur-3xl animate-pulse top-20 left-10" />
-        <div className="absolute w-96 h-96 bg-indigo-500/20 rounded-full blur-3xl animate-pulse bottom-20 right-10" />
-      </div>
-
-      {/* Sidebar */}
-      <aside className="hidden md:block w-80 border-r border-white/10 backdrop-blur-xl bg-white/5">
+      {/* SIDEBAR */}
+      <aside className="w-80 lg:w-96 min-h-screen bg-[#111827] border-r border-white/10 sticky top-0">
         <Sidebar />
       </aside>
 
-      {/* Main Content */}
+      {/* MAIN CONTENT */}
       <main className="flex-1 overflow-y-auto">
-        <div className="max-w-6xl mx-auto px-6 md:px-24">
+        <div className="max-w-7xl mx-auto px-12 lg:px-24 py-20">
           <Home />
         </div>
       </main>
