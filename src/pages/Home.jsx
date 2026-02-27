@@ -75,7 +75,7 @@ function Home() {
 
         <div className="border border-white/10 rounded-2xl p-8 space-y-4">
           <h3 className="text-2xl font-semibold">
-            Project Coordinator – Capstone Solar PV Forecasting Model
+            Project Coordinator – Energispeak Analytics Pvt. Ltd. - Industry Capstone Project 
           </h3>
           <p className="text-slate-400 text-lg">
             Built an SVR-based Solar PV Energy Forecasting Model using weather and IoT data,
@@ -94,7 +94,7 @@ function Home() {
         </div>
 
         <div className="border border-white/10 rounded-2xl p-8">
-          <h3 className="text-2xl font-semibold">Rotaract Ruia – Secretary & Director of Services</h3>
+          <h3 className="text-2xl font-semibold">Rotaract Club of Ramnarain Ruia College– Secretary & Director of Services</h3>
           <p className="text-slate-400 text-lg">
             Led community service projects, documentation systems, and club coordination,
             improving operational efficiency and engagement.
